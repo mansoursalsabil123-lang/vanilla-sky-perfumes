@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Vanilla Sky Perfumes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .checkout-section {
+            padding: 140px 0 100px;
+            background-color: var(--light);
+            min-height: 100vh;
+        }
+        
+        .checkout-title {
+            font-size: 42px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--dark);
+        }
+        
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .order-summary {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .order-summary h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--nude);
+        }
+        
+        #checkout-items {
+            margin-bottom: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light);
+        }
+        
+        .checkout-item:last-child {
+            border-bottom: none;
+        }
+        
+        .checkout-item-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .checkout-item-info p {
+            font-size: 14px;
+            color: var(--taupe);
+        }
+        
+        .checkout-item-price {
+            font-weight: 600;
+            color: var(--gold);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 20px;
+            color: var(--taupe);
+        }
+        
+        .empty-cart a {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+        
+        .order-totals {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--nude);
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .total-row.grand-total {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--nude);
+        }
+        
+        /* Checkout Form */
+        .checkout-form-container {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .checkout-form-container h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--nude);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--nude);
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(184, 164, 126, 0.2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid var(--nude);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-option:hover {
+            border-color: var(--gold);
+            background-color: rgba(184, 164, 126, 0.05);
+        }
+        
+        .payment-option input[type="radio"] {
+            margin-right: 10px;
+            width: auto;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            margin-top: 20px;
+            background-color: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .checkout-btn:hover {
+            background-color: var(--taupe);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 992px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Vanilla <span>Sky</span></a>
+            
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="index.html#collections">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="checkout.html" class="active">Checkout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Checkout Content -->
+    <section class="checkout-section">
+        <div class="container">
+            <h1 class="checkout-title">Checkout</h1>
+            
+            <div class="checkout-container">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Your Order</h2>
+                    <div id="checkout-items">
+                        <!-- Items will be loaded here from localStorage -->
+                        <p class="empty-cart">Your cart is empty. <a href="shop.html">Continue shopping</a></p>
+                    </div>
+                    
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">0 DT</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping:</span>
+                            <span id="shipping">8 DT</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total:</span>
+                            <span id="total">8 DT</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shipping & Payment Form -->
+                <div class="checkout-form-container">
+                    <h2>Shipping & Payment Information</h2>
+                    
+                    <!-- FormSubmit Form - Replace YOUR_EMAIL with your email -->
+                    <form id="checkout-form" 
+                          action="https://formsubmit.co/mansoursalsabil2005@gmail.com" 
+                          method="POST">
+                        
+                        <!-- FormSubmit Settings -->
+                        <input type="hidden" name="_subject" value="New Order - Vanilla Sky Perfumes">
+                        <input type="hidden" name="_autoresponse" value="Thank you for your order from Vanilla Sky Perfumes! We have received your order and will contact you soon for delivery details.">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="thankyou.html">
+                        
+                        <!-- Customer Information -->
+                        <div class="form-group">
+                            <label for="full-name">Full Name *</label>
+                            <input type="text" id="full-name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Delivery Address *</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="postal-code">Postal Code</label>
+                                <input type="text" id="postal-code" name="postal_code">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Order Notes (Optional)</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Special delivery instructions or notes about your order..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Payment Method *</label>
+                            <div class="payment-methods">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="cash_on_delivery" checked>
+                                    <span>Cash on Delivery</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="bank_transfer">
+                                    <span>Bank Transfer</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Order Details (Hidden) -->
+                        <input type="hidden" id="order-summary-text" name="order_summary">
+                        <input type="hidden" id="order-total-text" name="order_total">
+                        <input type="hidden" id="order-items" name="order_items">
+                        
+                        <button type="submit" class="btn checkout-btn">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">Vanilla <span>Sky</span></div>
+                    <p>Marque 100% tunisienne 🇹🇳 ✨<br>
+                    Eaux de parfum unique✨ 💎<br>
+                    Dupes de luxe & création exclusive</p>
+                    
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vanilla_sky_perfumes/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61582382961650" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="index.html#collections">Collections</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Tunis, Tunisia</li>
+                        <li><i class="fas fa-phone"></i> +216 XX XXX XXX</li>
+                        <li><i class="fas fa-envelope"></i> contact@vanillasky.tn</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Delivery</h3>
+                    <p>Fast home delivery across Tunisia 📦</p>
+                    <p>Secure payment options</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>All Rights Reserved © 2025 vanilla sky - Powered by olibo_webs</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load cart items on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCheckoutItems();
+            
+            // Form submission
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                // Validate cart is not empty
+                const cart = JSON.parse(localStorage.getItem('vanillaSkyCart')) || [];
+                if (cart.length === 0) {
+                    e.preventDefault();
+                    alert('Your cart is empty. Please add items before placing an order.');
+                    window.location.href = 'shop.html';
+                    return;
+                }
+                
+                // Update hidden fields with order details
+                updateOrderSummaryForForm();
+                
+                // Clear cart after successful order
+                localStorage.removeItem('vanillaSkyCart');
+                
+                // You can add additional validation here if needed
+            });
+        });
+        
+        function loadCheckoutItems() {
+            const cart = JSON.parse(localStorage.getItem('vanillaSkyCart')) || [];
+            const checkoutItems = document.getElementById('checkout-items');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
+            
+            if (cart.length === 0) {
+                checkoutItems.innerHTML = '<p class="empty-cart">Your cart is empty. <a href="shop.html">Continue shopping</a></p>';
+                subtotalElement.textContent = '0 DT';
+                totalElement.textContent = '8 DT';
+                return;
+            }
+            
+            let itemsHTML = '';
+            let subtotal = 0;
+            let itemsList = [];
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                itemsHTML += `
+                    <div class="checkout-item">
+                        <div class="checkout-item-info">
+                            <h4>${item.name}</h4>
+                            <p>Quantity: ${item.quantity}</p>
+                        </div>
+                        <div class="checkout-item-price">${itemTotal} DT</div>
+                    </div>
+                `;
+                
+                itemsList.push(`${item.quantity} × ${item.name} = ${itemTotal} DT`);
+            });
+            
+            const shipping = 8;
+            const total = subtotal + shipping;
+            
+            checkoutItems.innerHTML = itemsHTML;
+            subtotalElement.textContent = `${subtotal} DT`;
+            totalElement.textContent = `${total} DT`;
+            
+            // Save items list for form
+            document.getElementById('order-items').value = itemsList.join('\n');
+        }
+        
+        function updateOrderSummaryForForm() {
+            const cart = JSON.parse(localStorage.getItem('vanillaSkyCart')) || [];
+            let orderSummaryText = '';
+            let subtotal = 0;
+            let itemsList = [];
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                orderSummaryText += `${item.quantity} × ${item.name}: ${itemTotal} DT\n`;
+                itemsList.push(`${item.quantity} × ${item.name} = ${itemTotal} DT`);
+            });
+            
+            const shipping = 8;
+            const total = subtotal + shipping;
+            
+            orderSummaryText += `\nSubtotal: ${subtotal} DT\n`;
+            orderSummaryText += `Shipping: ${shipping} DT\n`;
+            orderSummaryText += `Total: ${total} DT`;
+            
+            document.getElementById('order-summary-text').value = orderSummaryText;
+            document.getElementById('order-total-text').value = `${total} DT`;
+            document.getElementById('order-items').value = itemsList.join('\n');
+        }
+    </script>
+</body>
+</html>

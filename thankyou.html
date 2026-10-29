@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! | Vanilla Sky Perfumes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .thank-you-section {
+            padding: 150px 0 100px;
+            text-align: center;
+            background-color: var(--light);
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .thank-you-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .thank-you-icon {
+            font-size: 80px;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+        
+        .thank-you-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .thank-you-message {
+            font-size: 18px;
+            color: var(--taupe);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .order-details {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: left;
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Vanilla <span>Sky</span></a>
+            
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="index.html#collections">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Thank You Content -->
+    <section class="thank-you-section">
+        <div class="container">
+            <div class="thank-you-content">
+                <div class="thank-you-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                
+                <h1 class="thank-you-title">Thank You For Your Order!</h1>
+                
+                <p class="thank-you-message">
+                    Your order has been received and is being processed. We have sent you a confirmation email with all the details of your purchase.
+                </p>
+                
+                <div class="order-details">
+                    <h3>Order Information</h3>
+                    <p><strong>Order Number:</strong> VS-<span id="order-number">${Math.floor(10000 + Math.random() * 90000)}</span></p>
+                    <p><strong>Estimated Delivery:</strong> 2-3 business days</p>
+                    <p><strong>Payment Method:</strong> Cash on Delivery</p>
+                    <p>You will receive a call from our delivery team to confirm your address and delivery time.</p>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="shop.html" class="btn" style="margin-right: 15px;">Continue Shopping</a>
+                    <a href="index.html" class="btn btn-outline">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">Vanilla <span>Sky</span></div>
+                    <p>Marque 100% tunisienne 🇹🇳 ✨<br>
+                    Eaux de parfum unique✨ 💎<br>
+                    Dupes de luxe & création exclusive</p>
+                    
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vanilla_sky_perfumes/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61582382961650" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="index.html#collections">Collections</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Tunis, Tunisia</li>
+                        <li><i class="fas fa-phone"></i> +216 XX XXX XXX</li>
+                        <li><i class="fas fa-envelope"></i> contact@vanillasky.tn</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Delivery</h3>
+                    <p>Fast home delivery across Tunisia 📦</p>
+                    <p>Secure payment options</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>All Rights Reserved © 2025 vanilla sky - Powered by olibo_webs</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate order number
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderNumberSpan = document.getElementById('order-number');
+            if (orderNumberSpan) {
+                orderNumberSpan.textContent = Math.floor(10000 + Math.random() * 90000);
+            }
+        });
+    </script>
+</body>
+</html>

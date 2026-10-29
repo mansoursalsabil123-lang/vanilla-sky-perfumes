@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Vanilla Sky Perfumes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Vanilla <span>Sky</span></a>
+            
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="index.html#collections">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="checkout.html" class="cart-icon">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-count" id="cart-count">0</span>
+</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        
+        <div id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <p class="empty-cart-message">Your cart is empty</p>
+        </div>
+        
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-price">0 DT</span>
+        </div>
+        
+        <div class="cart-actions">
+            <a href="#" class="btn checkout-btn" style="width: 100%; text-align: center; margin-bottom: 10px;">Checkout</a>
+            <a href="shop.html" class="btn btn-outline" style="width: 100%; text-align: center;">Continue Shopping</a>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Shop Hero -->
+    <section class="shop-hero">
+        <div class="container">
+            <div class="shop-hero-content">
+                <h1>Our Perfume Collection</h1>
+                <p>Discover our unique fragrances - luxury dupes and exclusive creations</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Filter -->
+    <section class="products-filter-section">
+        <div class="container">
+            <div class="products-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="women">Women</button>
+                <button class="filter-btn" data-filter="men">Men</button>
+                <button class="filter-btn" data-filter="unisex">Unisex</button>
+                <button class="filter-btn" data-filter="dupes">Luxury Dupes</button>
+                <button class="filter-btn" data-filter="exclusive">Exclusive</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- All Products -->
+    <section class="all-products">
+        <div class="container">
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="women exclusive" id="product1">
+                    <div class="product-badge">Exclusive</div>
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vanilla Orchid" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Vanilla Orchid</h3>
+                        <p class="product-description">A delicate blend of vanilla, orchid, and white musk</p>
+                        <div class="product-price">89 DT</div>
+                        <button class="btn view-details" data-product="1">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="men dupes" id="product2">
+                    <div class="product-badge">Luxury Dupe</div>
+                    <img src="https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Noir Essence" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Noir Essence</h3>
+                        <p class="product-description">Dark, woody notes with hints of leather and spice</p>
+                        <div class="product-price">95 DT</div>
+                        <button class="btn view-details" data-product="2">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="women dupes" id="product3">
+                    <div class="product-badge">Luxury Dupe</div>
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Amber Romance" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Amber Romance</h3>
+                        <p class="product-description">Warm amber blended with jasmine and vanilla</p>
+                        <div class="product-price">92 DT <del>110 DT</del></div>
+                        <button class="btn view-details" data-product="3">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="unisex exclusive" id="product4">
+                    <div class="product-badge">Exclusive</div>
+                    <img src="https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Zenith" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Zenith</h3>
+                        <p class="product-description">Fresh citrus top notes with a warm amber base</p>
+                        <div class="product-price">78 DT</div>
+                        <button class="btn view-details" data-product="4">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" data-category="women dupes" id="product5">
+                    <div class="product-badge">Bestseller</div>
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Jasmin Blanc" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Jasmin Blanc</h3>
+                        <p class="product-description">Pure jasmine with white floral notes and musk</p>
+                        <div class="product-price">85 DT</div>
+                        <button class="btn view-details" data-product="5">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" data-category="men exclusive" id="product6">
+                    <div class="product-badge">Exclusive</div>
+                    <img src="https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sahara Nights" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Sahara Nights</h3>
+                        <p class="product-description">Oud, amber, and exotic spices inspired by Tunisian nights</p>
+                        <div class="product-price">120 DT</div>
+                        <button class="btn view-details" data-product="6">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card" data-category="women dupes" id="product7">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Rose Velvet" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Rose Velvet</h3>
+                        <p class="product-description">Rich rose petals with patchouli and vanilla</p>
+                        <div class="product-price">88 DT</div>
+                        <button class="btn view-details" data-product="7">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card" data-category="unisex dupes" id="product8">
+                    <div class="product-badge">New</div>
+                    <img src="https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Citrus Bloom" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title">Citrus Bloom</h3>
+                        <p class="product-description">Zesty citrus with white flowers and clean musk</p>
+                        <div class="product-price">75 DT</div>
+                        <button class="btn view-details" data-product="8">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Product Modal -->
+    <div class="product-modal" id="product-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <!-- Content will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">Vanilla <span>Sky</span></div>
+                    <p>Marque 100% tunisienne 🇹🇳 ✨<br>
+                    Eaux de parfum unique✨ 💎<br>
+                    Dupes de luxe & création exclusive</p>
+                    
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="index.html#collections">Collections</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Tunis, Tunisia</li>
+                        <li><i class="fas fa-phone"></i> +216 XX XXX XXX</li>
+                        <li><i class="fas fa-envelope"></i> contact@vanillasky.tn</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Delivery</h3>
+                    <p>Fast home delivery across Tunisia 📦</p>
+                    <p>Secure payment options</p>
+                    <p>Easy returns within 7 days</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>All Rights Reserved © 2025 vanilla sky - Powered by olibo_webs</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Product data
+        const products = {
+            1: {
+                id: 1,
+                name: "Vanilla Orchid",
+                category: "Exclusive Creation",
+                price: 89,
+                image: "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A delicate and sophisticated fragrance that combines the sweetness of vanilla with the elegance of white orchid. Perfect for special occasions and evening wear.",
+                notes: "Top: Bergamot, Pink Pepper | Heart: White Orchid, Jasmine | Base: Vanilla, White Musk, Sandalwood",
+                longevity: "8-10 hours",
+                size: "100ml",
+                type: "Eau de Parfum"
+            },
+            2: {
+                id: 2,
+                name: "Noir Essence",
+                category: "Luxury Dupe",
+                price: 95,
+                image: "https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A bold and masculine fragrance with dark, woody notes. Inspired by luxury designer scents, perfect for confident individuals.",
+                notes: "Top: Cardamom, Bergamot | Heart: Leather, Cedarwood | Base: Patchouli, Amber, Vetiver",
+                longevity: "10-12 hours",
+                size: "100ml",
+                type: "Eau de Parfum"
+            },
+            3: {
+                id: 3,
+                name: "Amber Romance",
+                category: "Luxury Dupe",
+                price: 92,
+                originalPrice: 110,
+                image: "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A warm, sensual fragrance that combines amber with floral notes. A perfect dupe for high-end luxury perfumes at an accessible price.",
+                notes: "Top: Bergamot, Pink Pepper | Heart: Jasmine, Rose | Base: Amber, Vanilla, Musk",
+                longevity: "8-10 hours",
+                size: "100ml",
+                type: "Eau de Parfum"
+            },
+            4: {
+                id: 4,
+                name: "Zenith",
+                category: "Exclusive Creation",
+                price: 78,
+                image: "https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A fresh and vibrant unisex fragrance that combines citrus top notes with a warm amber base. Perfect for everyday wear.",
+                notes: "Top: Lemon, Bergamot, Grapefruit | Heart: Neroli, Lavender | Base: Amber, Musk, Cedarwood",
+                longevity: "6-8 hours",
+                size: "100ml",
+                type: "Eau de Parfum"
+            },
+            5: {
+                id: 5,
+                name: "Jasmin Blanc",
+                category: "Luxury Dupe",
+                price: 85,
+                image: "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A pure and elegant jasmine fragrance that captures the essence of white flowers. A bestseller among our luxury dupes collection.",
+                notes: "Top: Green Notes, Pear | Heart: Jasmine, Orange Blossom | Base: White Musk, Sandalwood",
+                longevity: "7-9 hours",
+                size: "100ml",
+                type: "Eau de Parfum"
+            },
+            6: {
+                id: 6,
+                name: "Sahara Nights",
+                category: "Exclusive Creation",
+                price: 120,
+                image: "https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "Inspired by Tunisian nights, this exclusive creation combines oud, amber, and exotic spices for a truly unique fragrance experience.",
+                notes: "Top: Saffron, Cardamom | Heart: Oud, Rose | Base: Amber, Patchouli, Vanilla",
+                longevity: "12+ hours",
+                size: "100ml",
+                type: "Extrait de Parfum"
+            },
+            7: {
+                id: 7,
+                name: "Rose Velvet",
+                category: "Luxury Dupe",
+                price: 88,
+                image: "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A rich and luxurious rose fragrance with velvety notes of patchouli and vanilla. Perfect for romantic occasions.",
+                notes: "Top: Pink Pepper, Bergamot | Heart: Rose, Peony | Base: Patchouli, Vanilla, Ambroxan",
+                longevity: "8-10 hours",
+                size: "100ml",
+                type: "Eau de Parfum"
+            },
+            8: {
+                id: 8,
+                name: "Citrus Bloom",
+                category: "Luxury Dupe",
+                price: 75,
+                image: "https://images.unsplash.com/photo-1590736969956-6d9c2a8d6975?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                description: "A fresh and vibrant citrus fragrance with floral notes. Perfect for daytime wear and summer months.",
+                notes: "Top: Lemon, Bergamot, Grapefruit | Heart: Lily of the Valley, Jasmine | Base: Musk, Cedarwood",
+                longevity: "6-8 hours",
+                size: "100ml",
+                type: "Eau de Toilette"
+            }
+        };
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Add event listeners to view details buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product');
+                    openProductModal(productId);
+                });
+            });
+            
+            // Close modal
+            document.querySelector('.close-modal').addEventListener('click', closeProductModal);
+            
+            // Filter products
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    const productCards = document.querySelectorAll('.product-card');
+                    
+                    productCards.forEach(card => {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        function openProductModal(productId) {
+            const product = products[productId];
+            const modal = document.getElementById('product-modal');
+            const modalBody = document.querySelector('.modal-body');
+            
+            modalBody.innerHTML = `
+                <div class="modal-product">
+                    <div class="modal-product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="modal-product-details">
+                        <div class="product-badge">${product.category}</div>
+                        <h2>${product.name}</h2>
+                        <div class="modal-product-price">
+                            ${product.originalPrice ? `<span class="original-price">${product.originalPrice} DT</span>` : ''}
+                            <span class="current-price">${product.price} DT</span>
+                        </div>
+                        
+                        <div class="modal-product-info">
+                            <p><strong>Description:</strong> ${product.description}</p>
+                            <p><strong>Fragrance Notes:</strong> ${product.notes}</p>
+                            <p><strong>Longevity:</strong> ${product.longevity}</p>
+                            <p><strong>Size:</strong> ${product.size}</p>
+                            <p><strong>Type:</strong> ${product.type}</p>
+                        </div>
+                        
+                        <div class="quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        
+                        <button class="btn add-to-cart-modal" onclick="addToCart('${product.name}', ${product.price})">
+    Add to Cart
+</button>
+<button class="btn btn-outline" onclick="window.location.href='checkout.html'" style="margin-top: 10px;">
+    <i class="fas fa-shopping-cart"></i> Go to Checkout
+</button>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            
+            // Add event listeners for quantity controls
+            const minusBtn = modalBody.querySelector('.minus');
+            const plusBtn = modalBody.querySelector('.plus');
+            const quantityInput = modalBody.querySelector('#quantity');
+            
+            minusBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                }
+            });
+            
+            plusBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value < 10) {
+                    quantityInput.value = value + 1;
+                }
+            });
+            
+            
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeProductModal();
+                }
+            });
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
